@@ -1,0 +1,57 @@
+<body>
+  <div class="container px-5 px-sm-0">
+   <div class="row">
+    <div class="col-md-3" style="background-color: white;">
+     <%= render 'users/info', user: @user %>
+     <%= render 'books/form', book: @book %>
+     </div>
+
+  <div class="col-md-8 offset-md-1">
+<h2>Users</h2>
+<table class="table">
+          <thead>
+           <tr>
+             <th>image</th>
+             <th>name</th>
+             <th colspan="3"></th>
+           </tr>
+         </thead>
+
+        <tbody>
+        <% @users.each do |user| %>
+           <tr>
+             <td><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %></td>
+             <%= link_to user_path(user.id) do %>
+             <td><%= user.name %></td>
+             <% end %>
+             <td>フォロー人数：<%= user.followings.count %></td>
+             <td>フォロワー人数：<%= user.followers.count %></td>
+             <td>
+              <% if current_user != user %>
+               <% if current_user.following?(user) %>
+                <%= link_to "フォローを外す", user_relationships_path(user.id), method: :delete %>
+               <% else %>
+                <%= link_to "フォローをする", user_relationships_path(user.id), method: :post %>
+               <% end %>
+              <% end %>
+             </td>
+             <td><%= link_to "Show", user_path(user.id)%></td>
+
+           </tr>
+         </tbody>
+
+          <% end %>
+        </table>
+        </div>
+</div>
+     </div>
+
+
+</body>
+
+
+
+
+
+
+
