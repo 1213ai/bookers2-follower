@@ -13,7 +13,7 @@
     </div>
 
 
-     <div class="col-md-8 offset-md-1">
+ <div class="col-md-8 offset-md-1">
         <h2>Books</h2>
         <table class="table">
           <thead>
@@ -35,18 +35,10 @@
            <%= book.title %><% end %></td>
           <td><%= book.body %></td>
 
+           <td id="favorite-btn_<%= book.id %>">
+             <%= render partial: 'favorites/favorite-btn', locals: { book: book} %>
+           </td>
 
-          <td>
-          <% if book.favorited_by?(current_user) %>
-            <%= link_to book_favorites_path(book), method: :delete do %>
-             ♥<%= book.favorites.count %>
-            <% end %>
-          <% else %>
-            <%= link_to book_favorites_path(book), method: :post do %>
-             ♡<%= book.favorites.count %>
-            <% end %>
-            <% end %>
-          </td>
           <td>コメント数：<%= book.book_comments.count %></td>
         </tr>
        <% end %>
@@ -56,5 +48,7 @@
    </div>
  </div>
 </body>
+
+
 
 
