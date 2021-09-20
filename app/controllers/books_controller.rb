@@ -13,7 +13,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = User.find_by(id: @book.user_id)
     @book_comment = BookComment.new
-    
+
   end
 
   def create
@@ -65,4 +65,6 @@ class BooksController < ApplicationController
      redirect_to "/books"
     end
   end
+  
+  
 end
