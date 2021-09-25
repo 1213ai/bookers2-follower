@@ -13,7 +13,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = User.find_by(id: @book.user_id)
     @book_comment = BookComment.new
-    
+
   end
 
   def create
@@ -56,7 +56,7 @@ class BooksController < ApplicationController
   private
 
  def book_params
-   params.require(:book).permit(:title, :body)
+   params.require(:book).permit(:title, :body, :rate)
  end
 
   def ensure_correct_user
@@ -65,4 +65,7 @@ class BooksController < ApplicationController
      redirect_to "/books"
     end
   end
+  
+  
+  
 end
