@@ -30,22 +30,21 @@
            <% end %>
 
            <td>コメント件数：<%= @book.book_comments.count %></td>
-           
-          <td>
-          <div id="star-rate-<%= @book.id %>"></div>
+                     <td>
+          <div id="rate_<%= @book.id %>"></div>
           <script>
-          $('#star-rate-<%= @book.id %>').raty({
-            size: 36,
+          $('#rate_<%= @book.id %>').raty({
+            size: 20,
             starOff:  '<%= asset_path('star-off.png') %>',
             starOn : '<%= asset_path('star-on.png') %>',
             starHalf: '<%= asset_path('star-half.png') %>',
             half: true,
             readOnly: true,
-            score: '<%= @book.rate %>',
-          });
-          </script>  
+            score: <%= @book.rate %> , 
+            });
+          </script>
           </td>
-
+           
            </tr>
            </tbody>
            </table>

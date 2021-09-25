@@ -25,7 +25,7 @@
            </tr>
          </thead>
         <tbody>
-         
+
         <% @books.each do |book| %>
          <tr>
           <td><%= link_to user_path(book.user) do %>
@@ -41,22 +41,22 @@
            </td>
 
           <td>コメント数：<%= book.book_comments.count %></td>
-          
+
           <td>
-          <div id="star-rate-<%= book.id %>"></div>
+          <div id="rate_<%= book.id %>"></div>
           <script>
-          $('#star-rate-<%= book.id %>').raty({
-            size: 36,
+          $('#rate_<%= book.id %>').raty({
+            size: 20,
             starOff:  '<%= asset_path('star-off.png') %>',
             starOn : '<%= asset_path('star-on.png') %>',
             starHalf: '<%= asset_path('star-half.png') %>',
             half: true,
             readOnly: true,
-            score: '<%= book.rate %>',
-          });
-          </script>  
+            score: <%= book.rate %> , 
+            });
+          </script>
           </td>
-          
+
         </tr>
        <% end %>
       </tbody>
