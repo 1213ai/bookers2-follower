@@ -35,5 +35,16 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   
+  def self.sort(selection)
+    case selection
+    when 'new'
+      return all.order(created_at: :DESC)
+    when 'high'
+      return all.order(rate :DESC)
+    end
+  end
+  
+  
+  
   
 end

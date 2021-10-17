@@ -7,7 +7,13 @@ class BooksController < ApplicationController
     @books = Book.all
     @user = current_user
   end
-
+  
+  def search
+    selection = params[:keyword]
+    @books = Book.sort(selection)
+  end
+  
+  
   def show
     @newbook = Book.new
     @book = Book.find(params[:id])
